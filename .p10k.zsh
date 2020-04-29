@@ -41,7 +41,7 @@
   # automatically hidden when the input line reaches it. Right prompt above the
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-    status                  # exit code of the last command
+    # status                  # exit code of the last command
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
@@ -178,7 +178,7 @@
 
   ################################[ prompt_char: prompt symbol ]################################
   # Green prompt symbol if the last command succeeded.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=76
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=39 # 76
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=196
   # Default prompt symbol.
@@ -200,7 +200,7 @@
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=31
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
-  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
+  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
   # Replace removed segment suffixes with this symbol.
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
@@ -793,7 +793,7 @@
   # Context color in SSH without privileges.
   typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND=180
   # Default context color (no privileges, no SSH).
-  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=180
+  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=66
 
   # Context format when running with privileges: bold user@hostname.
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%B%n@%m'
@@ -804,7 +804,7 @@
 
   # Don't show context unless running with privileges or in SSH.
   # Tip: Remove the next line to always show context.
-  typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION=
+  #typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION=
 
   # Custom icon.
   # typeset -g POWERLEVEL9K_CONTEXT_VISUAL_IDENTIFIER_EXPANSION='⭐'
