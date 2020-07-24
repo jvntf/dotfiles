@@ -72,7 +72,7 @@ augroup END
 
 
 
-"MAPPINGS"
+" Navigation mappings
 let mapleader ="\<Space>"
 " Use arrow keys to navigate window splits
 nnoremap <silent> <Right> :wincmd l <CR>
@@ -121,6 +121,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <C-n> :NERDTreeToggle<CR>  " open and close file tree
 nmap <leader>n :NERDTreeFind<CR>  " open current buffer in file tree
 
+" You Complete Me
 let g:ycm_semantic_triggers =  {
   \   'c' : ['->', '.'],
   \   'objc' : ['->', '.'],
@@ -128,7 +129,6 @@ let g:ycm_semantic_triggers =  {
   \   'perl' : ['->'],
   \   'javascript' : []
   \ }
-
 
 let g:ycm_complete_in_comments_and_strings=1
 let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
@@ -142,9 +142,17 @@ let g:airline_theme='badwolf'
 set completeopt-=preview
 
 
+" LINTING
+let b:ale_linters = ['eslint', 'prettier']
+let g:ale_fixers = {
+\   'javascript': ['eslint', 'prettier'],
+\   'css': ['prettier'],
+\}
+let g:ale_javascript_prettier_use_local_config = 1
+nnoremap <leader>ap :ALEFix prettier<CR>
+nnoremap <leader>ae :ALEFix eslint<CR>
 
-let b:ale_linters = ['eslint']
-let b:ale_fixers = ['eslint']
+
 
 
 
