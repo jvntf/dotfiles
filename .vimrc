@@ -13,15 +13,17 @@ Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'psf/black'
 
 
- Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 
 
 Plug 'dense-analysis/ale'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+
 
 " END PLUGINS
 call plug#end()
@@ -108,6 +110,7 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|\_site)$',
   \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
 \}
+let g:ctrlp_show_hidden = 1
 
 " Use the nearest .git|.svn|.hg|.bzr directory as the cwd
 let g:ctrlp_working_path_mode = 'r'
@@ -143,16 +146,19 @@ set completeopt-=preview
 
 
 " LINTING
-let b:ale_linters = ['eslint', 'prettier']
+let b:ale_linters = {
+\   'javascript': ['eslint', 'prettier'],
+\   'python': ['flake8'],
+\}
 let g:ale_fixers = {
 \   'javascript': ['eslint', 'prettier'],
+\   'python': ['black'],
 \   'css': ['prettier'],
 \}
 let g:ale_javascript_prettier_use_local_config = 1
 nnoremap <leader>ap :ALEFix prettier<CR>
 nnoremap <leader>ae :ALEFix eslint<CR>
-
-
+nnoremap <leader>af :ALEFix<CR>
 
 
 
