@@ -15,11 +15,10 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'psf/black'
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'Valloric/YouCompleteMe'
 
-Plug 'Valloric/YouCompleteMe'
-
-
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -95,9 +94,6 @@ map <c-h> <c-w>h
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 
-
-
-
 " PLUGIN SETTINGS
 
 let g:jsx_ext_required = 0
@@ -105,16 +101,31 @@ let g:jsx_ext_required = 0
 " Airline
 let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
 let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
+
 " ctrl-p
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|\_site)$',
   \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
 \}
 let g:ctrlp_show_hidden = 1
-
-" Use the nearest .git|.svn|.hg|.bzr directory as the cwd
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=100
+"
+"" Use the nearest .git|.svn|.hg|.bzr directory as the cwd
 let g:ctrlp_working_path_mode = 'r'
-nmap <leader>p :CtrlP<cr>  " enter file search mode
+"nmap <leader>p :CtrlP<cr>  " enter file search mode
+let g:ctrlp_max_files=0
+
+" FZF
+" Enter file search mode with fzf
+nmap <leader>f :GFiles<cr> 
+" Enter string search mode with ripgrep
+nmap <leader>s :Rg<cr>
+nmap <leader>r :Rg <C-R><C-W><cr>
+
+  
+
+
 
 " Nerdtree
 "autocmd vimenter * NERDTree
@@ -147,10 +158,14 @@ set completeopt-=preview
 
 " LINTING
 let b:ale_linters = {
+\   'cpp': ['clang'],
+\   'c': ['clang'],
 \   'javascript': ['eslint', 'prettier'],
 \   'python': ['flake8'],
 \}
 let g:ale_fixers = {
+\   'cpp': ['clang-format'],
+\   'c': ['clang-format'],
 \   'javascript': ['eslint', 'prettier'],
 \   'python': ['black'],
 \   'css': ['prettier'],
@@ -163,21 +178,21 @@ nnoremap <leader>af :ALEFix<CR>
 
 
 " The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
+"if executable('ag')
+"  " Use ag over grep
+"  set grepprg=ag\ --nogroup\ --nocolor
+"
+"  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+"  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"
+"  " ag is fast enough that CtrlP doesn't need to cache
+"  let g:ctrlp_use_caching = 0
+"endif
 " bind K to grep word under cursor
-nnoremap <silent> <leader>f :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" nnoremap <silent> <leader>f :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " bind \ (backward slash) to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap <leader>s :Ag<SPACE>
+" command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+" nnoremap <leader>s :Ag<SPACE>
 
 
 
@@ -201,3 +216,61 @@ nmap <leader>bl :ls<CR>
 
 " Close window
 nmap <leader>x :q<CR>
+
+
+" Coc
+"command! -nargs=0 OR :call CocAction('runCommand', 'tsserver.organizeImports')
+
+" Run prettier
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+nmap <silent> f :Prettier<cr>
+
+" Organize imports
+command! -nargs=0 OR :CocCommand editor.action.organizeImport
+" Auto format on save
+autocmd BufWritePre *.ts,*.tsx :Prettier"
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use K to show documentation in preview window
+nnoremap <silent> <leader>k :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
