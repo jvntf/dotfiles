@@ -13,6 +13,10 @@ PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/bin:/opt/homebrew/bin:$PATH
 
 ZSH_DISABLE_COMPFIX=true
+
+# Add gcc arm none eabi binaries to path
+# This was a manual install produced by unzipping a tarball to this dir.
+export PATH="$PATH:/usr/local/gcc-arm-none-eabi-10-2020-q4-major/bin"
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
