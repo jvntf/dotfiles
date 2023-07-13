@@ -225,10 +225,17 @@ nmap <leader>x :q<CR>
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 nmap <silent> f :Prettier<cr>
 
+command! -nargs=0 Eslint :CocCommand eslint.executeAutoFix<cr>
+nmap <silent> e :Eslint<cr>
+
+
+
 " Organize imports
 command! -nargs=0 OR :CocCommand editor.action.organizeImport
+"
 " Auto format on save
 autocmd BufWritePre *.ts,*.tsx :Prettier"
+autocmd BufWrite *.py :call black#Black()
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
@@ -242,6 +249,7 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
