@@ -225,17 +225,20 @@ nmap <leader>x :q<CR>
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 nmap <silent> f :Prettier<cr>
 
-command! -nargs=0 Eslint :CocCommand eslint.executeAutoFix<cr>
-nmap <silent> e :Eslint<cr>
+" command! -nargs=0 Eslint :CocCommand eslint.executeAutoFix<cr>
+" nmap <silent> e :Eslint<cr>
 
 
 
 " Organize imports
 command! -nargs=0 OR :CocCommand editor.action.organizeImport
+command! -nargs=0 IS :CocCommand python.runLinting
+
 "
 " Auto format on save
 autocmd BufWritePre *.ts,*.tsx :Prettier"
-autocmd BufWrite *.py :call black#Black()
+autocmd BufWrite *.py :CocCommand editor.action.formatDocument
+" autocmd BufWritePost *.py :%!isort -
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
