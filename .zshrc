@@ -120,6 +120,13 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -alF'
 alias use_conda='source ~/miniconda3/bin/activate'
+alias ec2="ssh -A si-ec2 -t tmux -CC attach"
+alias coderdev="ssh coder.jeevan-coder.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
+alias coderct="ssh coder.jeevan-cratetrain.main -t 'tmux -CC attach || tmux -CC new-session'"
+alias codersi="ssh coder.jeevan-si-dev.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
+alias coder4gpu="ssh coder.jeevan-4gpu.main  -t 'tmux -CC attach || tmux -CC new-session'"
+alias coder2gpu="ssh coder.jeevan-2gpu.main  -t 'tmux -CC attach || tmux -CC new-session'"
+alias k=kubectl
 function color_palette () {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
@@ -183,3 +190,18 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+export PATH="/Users/jeevanfarias/.runway/tacocat/bin:$PATH"
+export PATH=$PATH:/Users/jeevanfarias/Documents/runwayml/streaming-inference/cratetrain
+export PATH=$PATH:/Users/jeevanfarias/Documents/runwayml/streaming-inference/cratetrain:/Users/jeevanfarias/Documents/runwayml/streaming-inference/cratetrain/bin
+alias ct=cratetrain
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jeevanfarias/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jeevanfarias/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jeevanfarias/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jeevanfarias/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -r ~/.secrets]
+then
+    source ~/.secrets
+fi

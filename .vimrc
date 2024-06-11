@@ -45,6 +45,9 @@ set expandtab
 set clipboard=unnamed
 set breakindent
 set linebreak
+set foldenable
+set foldmethod=syntax
+set foldlevel=50
 let &showbreak='  '
 
 
@@ -277,6 +280,7 @@ function! ShowDocumentation()
 endfunction
 
 nmap <silent> gd <Plug>(coc-definition)
+nnoremap gdt :vsp<CR>:execute "normal! gd"<CR>
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
