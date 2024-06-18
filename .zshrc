@@ -201,7 +201,8 @@ if [ -f '/Users/jeevanfarias/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/je
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jeevanfarias/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jeevanfarias/google-cloud-sdk/completion.zsh.inc'; fi
-if [ -r ~/.secrets]
+
+if [ -r ~/.secrets ];
 then
     source ~/.secrets
 fi
