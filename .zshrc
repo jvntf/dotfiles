@@ -127,6 +127,9 @@ alias codercpu="ssh coder.jeevan-cpu.main -L 8265:0.0.0.0:8265 -t 'tmux -CC atta
 alias coder4gpu="ssh coder.jeevan-4gpu.main  -L 8265:0.0.0.0:8266 -t 'tmux -CC attach || tmux -CC new-session'"
 alias coder2gpu="ssh coder.jeevan-2gpu.main  -t 'tmux -CC attach || tmux -CC new-session'"
 alias k=kubectl
+alias awslogin="aws sso login --sso-session runway --no-browser"
+alias gcplogin="gcloud auth login && gcloud auth application-default login"
+
 function color_palette () {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
@@ -165,9 +168,9 @@ bindkey "^?" backward-delete-char
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv init --path)"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
@@ -206,3 +209,5 @@ if [ -r ~/.secrets ];
 then
     source ~/.secrets
 fi
+
+
