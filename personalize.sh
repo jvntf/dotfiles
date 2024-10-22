@@ -3,8 +3,8 @@ chsh -s $(which zsh)
 yes | gcloud components install gke-gcloud-auth-plugin
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-echo "set -g default-terminal \"screen-256color\"" >> ~/.tmux.conf
-echo "set-option -g history-limit 100000" >> ~/.tmux.conf
+#echo "set -g default-terminal \"screen-256color\"" >> ~/.tmux.conf
+#echo "set-option -g history-limit 100000" >> ~/.tmux.conf
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
 echo >> /root/.zshrc
