@@ -2,6 +2,9 @@ apt-get update
 
 echo Y | apt-get install zsh
 chsh -s $(which zsh)
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
 yes | gcloud components install gke-gcloud-auth-plugin
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
