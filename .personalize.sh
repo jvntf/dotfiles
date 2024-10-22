@@ -23,7 +23,7 @@ nvm install node
 #cp ~/.coc-settings.json ~/.vim/coc-settings.json
 #brew unlink python
 brew install vim ripgrep fzf redis awscli k9s
-. /root/streaming-inference/venv/bin/activate
+. /root/streaming-inference/.venv/bin/activate
 
 pip install ruff
 pip install anyscale
@@ -47,5 +47,5 @@ else
 fi
 
 
-echo "export POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true" >> /root/.zshrC
+echo "export POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true" >> /root/.zshrc
 . ~/.zshrc
