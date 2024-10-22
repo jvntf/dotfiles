@@ -123,8 +123,8 @@ alias use_conda='source ~/miniconda3/bin/activate'
 alias ec2="ssh -A si-ec2 -t tmux -CC attach"
 alias coderdev="ssh coder.jeevan-coder.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
 alias coderct="ssh coder.jeevan-cratetrain.main -t 'tmux -CC attach || tmux -CC new-session'"
-alias codersi="ssh coder.jeevan-si-dev.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
-alias coder4gpu="ssh coder.jeevan-4gpu.main  -t 'tmux -CC attach || tmux -CC new-session'"
+alias codercpu="ssh coder.jeevan-cpu.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
+alias coder4gpu="ssh coder.jeevan-4gpu.main  -L 8265:0.0.0.0:8266 -t 'tmux -CC attach || tmux -CC new-session'"
 alias coder2gpu="ssh coder.jeevan-2gpu.main  -t 'tmux -CC attach || tmux -CC new-session'"
 alias k=kubectl
 function color_palette () {
