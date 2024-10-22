@@ -121,11 +121,16 @@ export EDITOR='vim'
 alias ll='ls -alF'
 alias use_conda='source ~/miniconda3/bin/activate'
 alias ec2="ssh -A si-ec2 -t tmux -CC attach"
-alias coderdev="ssh coder.jeevan-coder.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
-alias coderct="ssh coder.jeevan-cratetrain.main -t 'tmux -CC attach || tmux -CC new-session'"
-alias codercpu="ssh coder.jeevan-cpu.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
-alias coder4gpu="ssh coder.jeevan-4gpu.main  -L 8265:0.0.0.0:8266 -t 'tmux -CC attach || tmux -CC new-session'"
-alias coder2gpu="ssh coder.jeevan-2gpu.main  -t 'tmux -CC attach || tmux -CC new-session'"
+
+
+#alias coderct="ssh coder.jeevan-cratetrain.main -t 'tmux -CC attach || tmux -CC new-session'"
+#alias codercpu="ssh coder.jeevan-cpu.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
+#alias coder4gpu="ssh coder.jeevan-4gpu.main  -L 8265:0.0.0.0:8266 -t 'tmux -CC attach || tmux -CC new-session'"
+#alias coder2gpu="ssh coder.jeevan-2gpu.main  -t 'tmux -CC attach || tmux -CC new-session'"
+
+alias coderdev="ssh coder.jeevan-coder.main  -t 'tmux -CC attach || tmux -CC new-session'"
+
+
 alias k=kubectl
 alias awslogin="aws sso login --sso-session runway --no-browser"
 alias gcplogin="gcloud auth login && gcloud auth application-default login"
@@ -168,9 +173,11 @@ bindkey "^?" backward-delete-char
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#eval "$(pyenv init --path)"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+if command -v pyenv >/dev/null 2>&1; then
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
