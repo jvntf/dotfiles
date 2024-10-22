@@ -1,3 +1,5 @@
+apt-get update
+
 echo Y | apt-get install zsh
 chsh -s $(which zsh)
 yes | gcloud components install gke-gcloud-auth-plugin
@@ -21,10 +23,11 @@ nvm install node
 #cp ~/.coc-settings.json ~/.vim/coc-settings.json
 #brew unlink python
 brew install vim ripgrep fzf redis awscli k9s
+. /root/streaming-inference/venv/bin/activate
+
 pip install ruff
 pip install anyscale
 apt-get install psmisc
-. .venv/bin/activate
 alias watchgpu="watch -n 1 nvidia-smi"
 
 
@@ -45,4 +48,4 @@ fi
 
 
 echo "export POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true" >> /root/.zshrC
-source ~/.zshrc
+. ~/.zshrc
