@@ -1,7 +1,6 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-
 #if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 #  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 #fi
@@ -127,16 +126,11 @@ export EDITOR='vim'
 alias ll='ls -alF'
 alias use_conda='source ~/miniconda3/bin/activate'
 alias ec2="ssh -A si-ec2 -t tmux -CC attach"
-
-
-#alias coderct="ssh coder.jeevan-cratetrain.main -t 'tmux -CC attach || tmux -CC new-session'"
-#alias codercpu="ssh coder.jeevan-cpu.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
-#alias coder4gpu="ssh coder.jeevan-4gpu.main  -L 8265:0.0.0.0:8266 -t 'tmux -CC attach || tmux -CC new-session'"
-#alias coder2gpu="ssh coder.jeevan-2gpu.main  -t 'tmux -CC attach || tmux -CC new-session'"
-
-alias coderdev="ssh coder.jeevan-coder.main  -t 'tmux -CC attach || tmux -CC new-session'"
-
-
+alias coderdev="ssh coder.jeevan-coder.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
+alias coderct="ssh coder.jeevan-cratetrain.main -t 'tmux -CC attach || tmux -CC new-session'"
+alias codercpu="ssh coder.jeevan-cpu.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
+alias coder4gpu="ssh coder.jeevan-4gpu.main  -L 8265:0.0.0.0:8266 -t 'tmux -CC attach || tmux -CC new-session'"
+alias coder2gpu="ssh coder.jeevan-2gpu.main  -t 'tmux -CC attach || tmux -CC new-session'"
 alias k=kubectl
 alias awslogin="aws sso login --sso-session runway --no-browser"
 alias gcplogin="gcloud auth login && gcloud auth application-default login"
@@ -186,7 +180,7 @@ if command -v pyenv >/dev/null 2>&1; then
     eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
-fj
+fi
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
@@ -225,5 +219,3 @@ if [ -r ~/.secrets ];
 then
     source ~/.secrets
 fi
-
-
