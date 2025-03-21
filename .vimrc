@@ -284,6 +284,7 @@ nnoremap gdt :vsp<CR>:execute "normal! gd"<CR>
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> rn <Plug>(coc-rename)
 
 " Remap keys for applying codeAction to the current line.
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -291,3 +292,6 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 highlight CocErrorFloat ctermfg=white guifg=#ffffff
+
+let g:copilot_no_tab_map = v:true
+imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
