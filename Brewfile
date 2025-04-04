@@ -1,3 +1,7 @@
+tap "homebrew/core"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+
 brew "argocd"
 brew "cmake"
 brew "coder"
@@ -23,3 +27,9 @@ brew "wget"
 brew "zsh"
 brew "nvm"
 brew "uv"
+
+cask "iterm2"
+cask "arc"
+cask "tableplus"
+cask "blender"
+cask "slack"
