@@ -1,8 +1,7 @@
 #! /bin/bash
 set -e
 # Install brewfile
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-brew tap homebrew/bundle
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew bundle
 
 # install oh-my-zsh

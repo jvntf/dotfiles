@@ -1,6 +1,4 @@
-tap "homebrew/core"
-tap "homebrew/bundle"
-tap "homebrew/cask"
+tap "buo/cask-upgrade"
 
 brew "argocd"
 brew "cmake"
@@ -33,3 +31,4 @@ cask "arc"
 cask "tableplus"
 cask "blender"
 cask "slack"
+cask "zoom"
