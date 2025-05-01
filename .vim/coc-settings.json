@@ -1,0 +1,25 @@
+{
+  "suggest.noselect": true,
+  "coc.preferences.formatOnSaveFiletypes": [".ts,.tsx,.py,python"],
+  "python.formatting.provider": "ruff",
+  "python.formatting.provider": "ruff",
+  "python.organizeimports.provider": "ruff",
+  "python.linting.pylintEnabled": false,
+  "python.linting.ruffEnabled": true,
+  "python.linting.mypyEnabled": true,
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.parameterTypes": false,
+  "diagnostic.checkCurrentLine": true,
+  "languageserver": {
+		"terraform": {
+			"command": "terraform-ls",
+			"args": ["serve"],
+			"filetypes": [
+				"terraform",
+				"tf"
+			],
+			"initializationOptions": {},
+			"settings": {}
+		}
+	},
+}
