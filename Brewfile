@@ -25,6 +25,7 @@ brew "wget"
 brew "zsh"
 brew "nvm"
 brew "uv"
+brew "pyenv"
 
 cask "iterm2"
 cask "arc"

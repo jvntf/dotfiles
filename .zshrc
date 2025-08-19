@@ -110,7 +110,8 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR='vim'
+alias vim="nvim"
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -126,7 +127,7 @@ export EDITOR='vim'
 alias ll='ls -alF'
 alias use_conda='source ~/miniconda3/bin/activate'
 alias ec2="ssh -A si-ec2 -t tmux -CC attach"
-alias coderdev="ssh coder.jeevan-coder.main -L 8265:0.0.0.0:8265  -L 8888:0.0.0.0:8888 -L 8889:0.0.0.0:8889 -t 'tmux -CC attach || tmux -CC new-session'"
+alias coderdev="ssh coder.jeevan-coder.main -L 8265:0.0.0.0:8265  -L 8888:0.0.0.0:8888 -L 8889:0.0.0.0:8889 -L 5600:0.0.0.0:5600 -t 'tmux -CC attach || tmux -CC new-session'"
 alias coderct="ssh coder.jeevan-cratetrain.main -t 'tmux -CC attach || tmux -CC new-session'"
 alias codercpu="ssh coder.jeevan-cpu.main -L 8265:0.0.0.0:8265 -t 'tmux -CC attach || tmux -CC new-session'"
 alias coder4gpu="ssh coder.jeevan-4gpu.main  -L 8265:0.0.0.0:8266 -t 'tmux -CC attach || tmux -CC new-session'"
@@ -209,13 +210,13 @@ export PATH=$PATH:/Users/jeevanfarias/Documents/runwayml/streaming-inference/cra
 export PATH=$PATH:/Users/jeevanfarias/Documents/runwayml/streaming-inference/cratetrain:/Users/jeevanfarias/Documents/runwayml/streaming-inference/cratetrain/bin
 alias ct=cratetrain
 
+if [ -r ~/.secrets ];
+then
+    source ~/.secrets
+fi
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/jeevanfarias/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jeevanfarias/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jeevanfarias/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jeevanfarias/google-cloud-sdk/completion.zsh.inc'; fi
-
-if [ -r ~/.secrets ];
-then
-    source ~/.secrets
-fi

@@ -28,7 +28,6 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 
-
 " SETTINGS"
 set backspace=indent,eol,start
 set nocompatible
@@ -239,7 +238,7 @@ command! -nargs=0 IS :CocCommand python.runLinting
 
 "
 " Auto format on save
-autocmd BufWritePre *.ts,*.tsx :Prettier"
+"autocmd BufWritePre *.ts,*.tsx :Prettier"
 autocmd BufWrite *.py :CocCommand editor.action.formatDocument
 " autocmd BufWritePost *.py :%!isort -
 
